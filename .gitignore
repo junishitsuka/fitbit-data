@@ -18,3 +18,5 @@ setuptools/
 six-1.10.0.dist-info/
 six.py
 six.pyc
+
+upload.zip
