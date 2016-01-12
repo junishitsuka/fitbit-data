@@ -10,12 +10,6 @@ FITBIT_USER_SECRET = ""
 FITBIT_USER_ID = ""
 GITHUB_API_TOKEN = ""
 
-# this function must be executed after sleep
-def lambda_handler(event, context):
-    string_date = datetime.now().strftime("%Y-%m-%d")
-    data = fetch_fitbit_sleep_data(string_date)
-    return push_github(str(data), string_date)
-
 def fetch_fitbit_sleep_data(string_date):
     client = fitbit.Fitbit(
         FITBIT_CONSUMER_KEY,
@@ -47,3 +41,10 @@ def push_github(data, string_date):
         data = json.dumps(contents)
     )
     return result.content
+
+# this function must be executed after sleep
+# def lambda_handler(event, context):
+if __name__ == "__main__":
+    string_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    data = fetch_fitbit_sleep_data(string_date)
+    push_github(str(data), string_date)
