@@ -43,8 +43,8 @@ def push_github(data, string_date):
     return result.content
 
 # this function must be executed after sleep
-# def lambda_handler(event, context):
-if __name__ == "__main__":
+# if __name__ == "__main__":
+def lambda_handler(event, context):
     string_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
     data = fetch_fitbit_sleep_data(string_date)
     push_github(str(data), string_date)
